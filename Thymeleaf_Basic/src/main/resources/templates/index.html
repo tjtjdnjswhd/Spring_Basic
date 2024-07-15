@@ -18,5 +18,14 @@
     <li th:text="${item}"></li>
 </ul>
 
+<a th:href="@{/index/2}">Index2</a>
+
+<form th:action="@{/users}" method="post">
+    <input type="text" name="name" placeholder="이름">
+    <input type="email" name="email" placeholder="이메일">
+    <label for="admin">관리자</label>
+    <input type="checkbox" name="admin" id="admin">
+    <button type="submit">전송</button>
+</form>
 </body>
 </html>
