@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+<h1>Index</h1>
+<p th:text="${title}">메세지 표시</p>
+<div th:object="${user}">
+    <p>이름: <span th:text="*{name}"></span></p>
+    <p>이메일: <span th:text="*{email}"></span></p>
+    <p th:unless="*{admin}">관리자 아님</p>
+    <p th:if="*{admin}">관리자</p>
+</div>
+
+<ul th:each="item: ${datas}">
+    <li th:text="${item}"></li>
+</ul>
+
+</body>
+</html>

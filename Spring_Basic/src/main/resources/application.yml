@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: basic
+
+kakao:
+  api:
+    key: 1234567890
+    url: https://kapi.kakao.com/v2/search/web
