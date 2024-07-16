@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>게시글 상세보기</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
 <h1>게시글 상세보기</h1>
@@ -12,7 +12,13 @@
         작성일: <span th:text="${post.createdAt}"></span>
     </p>
     <div class="post-content" th:text="${post.content}"></div>
-    <a th:href="@{/posts}">목록으로</a>
+    <div class="post-actions">
+        <a th:href="@{/posts}">목록으로</a>
+        <a th:href="@{/posts/{id}/edit(id=${post.id})}" class="edit-btn">수정</a>
+        <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="post" class="delete-form">
+            <button type="submit">삭제</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

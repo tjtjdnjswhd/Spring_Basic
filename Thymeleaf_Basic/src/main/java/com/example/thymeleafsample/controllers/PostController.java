@@ -44,4 +44,31 @@ public class PostController {
         model.addAttribute("post", post);
         return "post/detail";
     }
+
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable("id") Long id) {
+        posts.removeIf(p -> id.equals(p.getId()));
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editForm(@PathVariable Long id, Model model) {
+        Post post = posts.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id: " + id));
+        model.addAttribute("post", post);
+        return "post/edit";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String edit(@PathVariable Long id, @ModelAttribute Post updatedPost) {
+        Post post = posts.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id: " + id));
+        post.setTitle(updatedPost.getTitle());
+        post.setContent(updatedPost.getContent());
+        return "redirect:/posts/{id}";
+    }
 }
