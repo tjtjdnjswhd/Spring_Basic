@@ -1,5 +1,6 @@
 package com.example.restapibasic.service;
 
+import com.example.restapibasic.LogExecutionTime;
 import com.example.restapibasic.domain.BoardPost;
 import com.example.restapibasic.domain.BoardPostDto;
 import com.example.restapibasic.domain.Comment;
@@ -17,6 +18,7 @@ public class BoardPostService {
     private Long nextPostId = 1L;
     private Long nextCommentId = 1L;
 
+    @LogExecutionTime
     public List<BoardPostDto> getAllBoardPosts() {
         return boardPosts.stream()
                 .map(BoardPostService::convertToBoardPostDto)
